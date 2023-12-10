@@ -4,6 +4,7 @@ var totalTime = 125;
 var timerId;
 var startBtn = document.getElementById("start");
 var feedbackEl = document.getElementById("feedback");
+var index = 0; 
 
 // GIVEN I am taking a code quiz
 function startQuiz() {
@@ -31,14 +32,26 @@ function handleAnwser(){
     feedbackEl.setAttribute("class", "feedback");
     setTimeout(function(){
         feedbackEl.setAttribute("class","feedback hide");
-    }, 2000)
+    }, 2000);
+
+    index++;
+    //check if you have comepleted the quiz
+    if (index === questions.length){
+        endQuiz();
+    } else{
+        renderQs();
+    }
 };
+function endQuiz(){
+    // TBC
+}
 function renderQs() {
-    document.querySelector("#question-title").textContent = questions[0].question
-for(i=0; i < questions[0].choices.length; i++){
+    document.querySelector("#question-title").textContent = questions[index].question;
+    document.querySelector("#choices").innerHTML="";
+for(i=0; i < questions[index].choices.length; i++){
 var choiceBtn = document.createElement("button");
-choiceBtn.textContent = questions[0].choices[i];
-choiceBtn.setAttribute("value", questions[0].choices[i]);
+choiceBtn.textContent = questions[index].choices[i];
+choiceBtn.setAttribute("value", questions[index].choices[i]);
 // console.log(choiceBtn);
 choiceBtn.onclick= handleAnwser;
 document.querySelector("#choices").append(choiceBtn);
