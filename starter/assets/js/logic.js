@@ -88,6 +88,31 @@ function startTimer() {
 };
 
 
+function saveScores() {
+    var scoreSheet = JSON.parse(localStorage.getItem("highScores")) || []
+    var initials = document.getElementById("initials").value;
+    var score = totalTime;
+    var newScore = {
+        initials,
+        score
+    }
+    scoreSheet.push(newScore);
+    localStorage.setItem("highScores", JSON.stringify(scoreSheet));
+   window.location.href="highscores.html" 
+// console.log(scoreSheet)
+for(var i = 0; i < scoreSheet.length; i++ ){
+var entryOfScore = scoreSheet[i]
+var listEl = document.createElement('li').innerHTML = entryOfScore
+document.getElementById("highScores").appendChild(listEl);
+console.log(listEL);
+}
+};
+
+document.getElementById("submit").addEventListener("click", saveScores);
+
+
+
+
 
 // WHEN I answer a question
 
