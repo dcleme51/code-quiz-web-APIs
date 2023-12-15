@@ -100,18 +100,18 @@ function saveScores() {
     localStorage.setItem("highScores", JSON.stringify(scoreSheet));
    window.location.href="highscores.html" 
 // console.log(scoreSheet)
+//Display scores in the list 
+var highScoresList = document.getElementById("highscores");
+highScoresList.innerHTML = '';
 for(var i = 0; i < scoreSheet.length; i++ ){
 var entryOfScore = scoreSheet[i]
 var listEl = document.createElement('li').innerHTML = entryOfScore
-document.getElementById("highScores").appendChild(listEl);
+highScoresList.appendChild(listEl);
 console.log(listEL);
 }
 };
 
-document.getElementById("submit").addEventListener("click", saveScores);
-
-
-
+document.getElementById(submit).addEventListener("click", saveScores);
 
 
 // WHEN I answer a question
