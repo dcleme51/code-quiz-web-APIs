@@ -53,7 +53,7 @@ function endQuiz() {
     endDivEl.removeAttribute("class");
 
     //final score screen
-    finalScore.textContent=totalTime;
+    finalScore.textContent = totalTime;
     //hide question sections
     document.querySelector("#questions").setAttribute("class", "hide");
 
@@ -86,7 +86,7 @@ function startTimer() {
 
     }, 1000);
 };
-
+var submitBtn = document.getElementById('submit');
 
 function saveScores() {
     var scoreSheet = JSON.parse(localStorage.getItem("highScores")) || []
@@ -98,20 +98,24 @@ function saveScores() {
     }
     scoreSheet.push(newScore);
     localStorage.setItem("highScores", JSON.stringify(scoreSheet));
-   window.location.href="highscores.html" 
-// console.log(scoreSheet)
-//Display scores in the list 
-var highScoresList = document.getElementById("highscores");
-highScoresList.innerHTML = '';
-for(var i = 0; i < scoreSheet.length; i++ ){
-var entryOfScore = scoreSheet[i]
-var listEl = document.createElement('li').innerHTML = entryOfScore
-highScoresList.appendChild(listEl);
-console.log(listEL);
-}
+    window.location.href = "highscores.html"
+    // console.log(scoreSheet)
+    //Display scores in the list 
+    var highScoresList = document.getElementById("highscores");
+    highScoresList.innerHTML = '';
+    for (var i = 0; i < scoreSheet.length; i++) {
+        var entryOfScore = scoreSheet[i]
+        var listEl = document.createElement('li').innerHTML = entryOfScore
+        highScoresList.appendChild(listEl);
+        console.log(listEL);
+    }
 };
+if (submitBtn) {
+    submitBtn.addEventListener("click", saveScores);
+  }
+  
 
-document.getElementById(submit).addEventListener("click", saveScores);
+// document.getElementById('submit').addEventListener("click", saveScores);
 
 
 // WHEN I answer a question
@@ -138,4 +142,6 @@ document.getElementById(submit).addEventListener("click", saveScores);
 // THEN I can save my initials and score
 
 // WHEN I click the start button
-startBtn.addEventListener("click", startQuiz); 
+if (startBtn) {
+    startBtn.addEventListener("click", startQuiz);
+  }
