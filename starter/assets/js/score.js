@@ -27,8 +27,8 @@ highscores.appendChild(listItem);
   
 // creating a click event, when clearing the highscores is clicked you will restart the quiz.
 function clearHighScores () {
-    window.localStorage.removeItem("scoreSheet");
-    // window.location.reload();
+    window.localStorage.removeItem("highScores");
+    window.location.reload();
 };
 
 document.getElementById("clear").onclick = clearHighScores;
